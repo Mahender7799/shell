@@ -1,5 +1,10 @@
 #!/bin/bash
 
-VAR_DATE=$(date +%Y-%M-%d)
+#VAR_DATE=$(date +%Y-%M-%d)
 
-echo "Date is $VAR_DATE" 
+START_TIME=$(date +%s)
+
+sleep 10
+echo "Date is $START_DATE" 
+
+END_TIME=$(date +%s)
