@@ -2,4 +2,4 @@
 
 VAR_DATE=$(date +%Y-%M-%d)
 
-echo "VAR_DATE" 
+echo "Date is $VAR_DATE" 
