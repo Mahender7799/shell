@@ -4,7 +4,7 @@
 RED="\e[31m"
 GREEN="\e[32m"
 YELLOW="\e[33m"
-NON="\e[0m"
+NONE="\e[0m"
 
 
 echo -e "$GREEN Hello world $NONE"
