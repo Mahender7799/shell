@@ -1,12 +1,12 @@
 #!/bin/bash
 
 
-R="\e[31m"
-G="\e[32m"
-Y="\e[33m"
-N="\e[0m"
+RED="\e[31m"
+GREEN="\e[32m"
+YELLOW="\e[33m"
+NON="\e[0m"
 
 
-echo -e "$G Hello world $N"
+echo -e "$GREEN Hello world $NONE"
 
 echo "check this color"
