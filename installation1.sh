@@ -18,7 +18,7 @@ VALIDATE(){ ## Functions receives inputs through args just like shell scripts
     fi
 }
 
-dnf install mysqld -y
+dnf install mysql -y
 VALIDATE $? "MYSQL"
 
 
@@ -28,4 +28,4 @@ VALIDATE  $? "NGINX"
 
 dnf install mongodb-mongosh -y
 
-VALIDATE $? "MONGODB"
+VALIDATE $? "MONGOSH"
