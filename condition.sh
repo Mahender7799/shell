@@ -5,7 +5,7 @@ NUMBER=$1 # Passing argument as input
 if [ $NUMBER -lt 10 ]; then
     echo "Given number $NUMBER is less ythan 10"
 
-elif [ $NUMBER -eg 10];then
+elif [ $NUMBER -eg 10 ];then
      echo "Givrn number $NUMBER is equal to 10"
 else
   echo "Given number is greater than or equal to 10"
