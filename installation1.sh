@@ -2,28 +2,30 @@
 
 USERID=$(id -u)
 
-if [ $USERID -ne 0 ]; then
-    echo "error:please run the script with root user"
-    exit 1  ## failure is other than 0
+
+
+if [ $USERID -ne 0 ];then
+   echo "ERROR::Please run script with root prevelages"
+   exit 1
 fi
 
-VALIDATE(){ ## functions receives input through args like shell scripts args
-    if [ $1 -ne 0 ]; then
-     echo "error::installing $2 is failed"
-     exit 1 
+VALIDATE(){ ## Functions receives inputs through args just like shell scripts
+    if [ $? -ne 0 ];then
+        echo "ERROR: Installing $2 is FAILED "
+        exit 1
     else
-       echo "installing $2 is success"     
-
-    fi 
+        echo "installing $2 is SUCCESS"
+    fi
 }
 
-dnf install mysql -y
-VALIDATE $? "Mysql"
+dnf install mysqld -y
+VALIDATE $? "MYSQL"
+
 
 dnf install nginx -y
-VALIDATE $? "Nginx"
 
-dnf install python3 -y
-VALIDATE $? "python"
+VALIDATE  $? "NGINX"     
 
+dnf install mongodb-mongosh -y
 
+VALIDATE $? "MONGODB"
