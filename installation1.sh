@@ -1,31 +1,45 @@
 #!/bin/bash
 
+R="\e[31m"
+G="\e[32m"
+Y="\e[33m"
+N="\e[0m"
+
 USERID=$(id -u)
 
-
-
 if [ $USERID -ne 0 ];then
-   echo "ERROR::Please run script with root prevelages"
+   echo -e " ERROR::Please run script with root prevelages "
    exit 1
 fi
 
 VALIDATE(){ ## Functions receives inputs through args just like shell scripts
     if [ $? -ne 0 ];then
-        echo "ERROR: Installing $2 is FAILED "
+        echo " Installing $2 ... is $R FAILED $N"
         exit 1
     else
-        echo "installing $2 is SUCCESS"
+        echo -e " installing $2 ... is $G SUCCESS $N"
     fi
 }
 
-dnf install mysql -y
-VALIDATE $? "MYSQL"
+dnf list installed mysql
+#Install if it not found
+if [ $? -ne 0 ];then
+    dnf install mysql -y
+    VALIDATE $? "MYSQL"
+else
+  echo "mysql already exist ... $Y skipping $N"
+fi
 
+dnf list installed nginx 
+if  [ $? -ne 0];then
+    dnf install nginx -y
+    VALIATE  $? "NGINX"  
+else
+  echo "Nginx alreday exist ... $Y Skipping $N"
 
-dnf install nginx -y
-
-VALIDATE  $? "NGINX"     
-
-dnf install python3 -y
-
-VALIDATE $? "PYTHON3"
+dnf list installed python3
+if [$? -ne 0];then
+    dnf install python3 -y
+    VALIDATE $? "PYTHON3"
+else
+  echo "python already installed .. $Y Skipping $N"    
