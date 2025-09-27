@@ -14,16 +14,16 @@ mkdir -p $LOGS_FOLDER
 echo "Script started at : $(date)"
 echo "Script started executing at: $date"
 if [ $USERID -ne 0 ];then
-   echo -e " ERROR::Please run script with root prevelages "
+   echo -e " ERROR::Please run script with root prevelages " | tee -a $LOGG_FILE
    exit 1
 fi
 
 VALIDATE(){ ## Functions receives inputs through args just like shell scripts
     if [ $? -ne 0 ];then
-        echo -e " Installing $2 ... is $R FAILED $N"
+        echo -e " Installing $2 ... is $R FAILED $N" | tee -a $LOGG_FILE
         exit 1
     else
-        echo -e " installing $2 ... is $G SUCCESS $N"
+        echo -e " installing $2 ... is $G SUCCESS $N" | tee -a $LOGG_FILE
     fi
 }
 
@@ -33,7 +33,7 @@ if [ $? -ne 0 ];then
     dnf install mysql -y &>>$LOGG_FILE
     VALIDATE $? "MYSQL"
 else
-  echo -e "mysql already exist ... $Y skipping $N"
+  echo -e "mysql already exist ... $Y skipping $N" | tee -a $LOGG_FILE
 fi
 
 dnf list installed nginx  &>>$LOGG_FILE
@@ -41,7 +41,7 @@ if  [ $? -ne 0 ];then
     dnf install nginx -y &>>$LOGG_FILE
     VALIDATE  $? "NGINX"  
 else
-  echo -e "Nginx alreday exist ... $Y Skipping $N"
+  echo -e "Nginx alreday exist ... $Y Skipping $N" | tee -a $LOGG_FILE
 fi
 
 dnf list installed python3 &>>$LOGG_FILE
@@ -49,5 +49,5 @@ if [ $? -ne 0 ];then
     dnf install python3 -y &>>$LOGG_FILE
     VALIDATE $? "PYTHON3"
 else
-  echo -e "python already installed .. $Y Skipping $N"    
+  echo -e "python already installed .. $Y Skipping $N"    | tee -a $LOGG_FILE
 fi
