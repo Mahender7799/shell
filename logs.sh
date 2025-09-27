@@ -39,7 +39,7 @@ fi
 dnf list installed nginx  &>>$LOGG_FILE
 if  [ $? -ne 0 ];then
     dnf install nginx -y &>>$LOGG_FILE
-    VALIATE  $? "NGINX"  
+    VALIDATE  $? "NGINX"  
 else
   echo -e "Nginx alreday exist ... $Y Skipping $N"
 fi
