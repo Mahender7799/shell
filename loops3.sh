@@ -9,10 +9,11 @@ LOGS_FOLDER="/var/log/shell"
 USERID=$(id -u)
 SCRIPT_NAME=$( echo $0 | cut -d "." -f1)
 LOG_FILE="$LOGS_FOLDER/$SCRIPT_NAME.log"
+DATE=$(date)
 
 mkdir -p $LOGS_FOLDER
 echo "Script started at : $(date)"
-echo "Script started executing at: $date"
+echo "Script started executing at: $DATE"
 if [ $USERID -ne 0 ];then
    echo -e " ERROR::Please run script with root prevelages " | tee -a $LOG_FILE
    exit 1
@@ -40,3 +41,5 @@ do
       echo -e "$package is already installed ... $Y SKIPPING$N "
     fi	 
 done     
+
+echo "Script ended at $DATE"
